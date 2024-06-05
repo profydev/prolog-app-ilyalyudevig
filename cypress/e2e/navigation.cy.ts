@@ -14,21 +14,25 @@ describe("Sidebar Navigation", () => {
         .contains("Projects")
         .should("have.attr", "href", "/dashboard");
 
-      cy.get("nav")
-        .contains("Issues")
-        .should("have.attr", "href", "/dashboard/issues");
+      cy.get("nav").contains("Issues").click();
+      cy.url().should("eq", "http://localhost:3000/dashboard/issues");
+      cy.get("h1").contains("Issues");
+
+      cy.get("nav").contains("Alerts").click();
+      cy.url().should("eq", "http://localhost:3000/dashboard/alerts");
+      cy.get("h1").contains("Alerts");
+
+      cy.get("nav").contains("Settings").click();
+      cy.url().should("eq", "http://localhost:3000/dashboard/settings");
+      cy.get("h1").contains("Settings");
 
       cy.get("nav")
-        .contains("Alerts")
-        .should("have.attr", "href", "/dashboard/alerts");
-
-      cy.get("nav")
-        .contains("Users")
-        .should("have.attr", "href", "/dashboard/users");
-
-      cy.get("nav")
-        .contains("Settings")
-        .should("have.attr", "href", "/dashboard/settings");
+        .contains("Support")
+        .should(
+          "have.attr",
+          "href",
+          "mailto:support@prolog-app.com?subject=Support Request:",
+        );
     });
 
     it("is collapsible", () => {
@@ -41,16 +45,6 @@ describe("Sidebar Navigation", () => {
 
       // check that text is not rendered
       cy.get("nav").contains("Issues").should("not.exist");
-    });
-
-    it("support link has correct href", () => {
-      cy.get("nav")
-        .contains("Support")
-        .should(
-          "have.attr",
-          "href",
-          "mailto:support@prolog-app.com?subject=Support Request:",
-        );
     });
   });
 
