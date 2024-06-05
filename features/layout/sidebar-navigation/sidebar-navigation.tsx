@@ -84,7 +84,7 @@ export function SidebarNavigation() {
               text="Support"
               iconSrc="/icons/support.svg"
               isCollapsed={isSidebarCollapsed}
-              isActive={true}
+              isActive={false}
               href="mailto:support@prolog-app.com?subject=Support Request:"
             />
             <MenuItemButton
