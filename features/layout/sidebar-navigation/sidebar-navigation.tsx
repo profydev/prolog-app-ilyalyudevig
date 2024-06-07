@@ -38,9 +38,11 @@ export function SidebarNavigation() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={
-              isSidebarCollapsed
-                ? "/icons/logo-small.svg"
-                : "/icons/logo-large.svg"
+              typeof window !== "undefined" && window.innerWidth <= 768
+                ? "/icons/logo-large.svg"
+                : isSidebarCollapsed
+                  ? "/icons/logo-small.svg"
+                  : "/icons/logo-large.svg"
             }
             alt="logo"
             className={styles.logo}
