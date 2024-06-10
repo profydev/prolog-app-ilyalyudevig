@@ -37,15 +37,21 @@ export function SidebarNavigation() {
         <header className={styles.header}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={
-              typeof window !== "undefined" && window.innerWidth <= 768
-                ? "/icons/logo-large.svg"
-                : isSidebarCollapsed
-                  ? "/icons/logo-small.svg"
-                  : "/icons/logo-large.svg"
-            }
-            alt="logo"
-            className={styles.logo}
+            src={"/icons/logo-large.svg"}
+            alt="logoLarge"
+            className={classNames(
+              styles.logoLarge,
+              isSidebarCollapsed && styles.isCollapsed,
+            )}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={"/icons/logo-small.svg"}
+            alt="logoSmall"
+            className={classNames(
+              styles.logoSmall,
+              isSidebarCollapsed && styles.isCollapsed,
+            )}
           />
           <Button
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
