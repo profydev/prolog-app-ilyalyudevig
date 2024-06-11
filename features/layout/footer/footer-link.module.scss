@@ -1,0 +1,16 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/misc";
+
+.listItem {
+  list-style-type: none;
+  display: inline;
+  margin: 0 space.$s3;
+}
+
+.anchor {
+  text-decoration: none;
+  color: inherit;
+}
