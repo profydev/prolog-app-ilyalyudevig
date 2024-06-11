@@ -40,7 +40,7 @@
 
 .version {
   color: color.$gray-400;
-  margin: space.$s6;
+  margin: space.$s6 0;
   order: 3;
 
   @media (min-width: breakpoint.$desktop) {
