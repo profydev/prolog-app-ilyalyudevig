@@ -1,4 +1,3 @@
-import { version } from "../../../package.json";
 import { FooterLink } from "./footer-link";
 import styles from "./footer.module.scss";
 
@@ -25,7 +24,7 @@ export const Footer = () => (
   <footer>
     <div className={styles.container}>
       <div className={styles.content}>
-        <p className={styles.version}>Version: {version}</p>
+        <p className={styles.version}>Version: {process.env.APP_VERSION}</p>
         <div className={styles.links}>
           <ul className={styles.linkList}>
             {footerLinks.map((footerLink, index) => (
