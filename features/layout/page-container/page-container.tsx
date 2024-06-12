@@ -20,17 +20,15 @@ export function PageContainer({ children, title, info }: PageContainerProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SidebarNavigation />
-      <div className={styles.main}>
-        <main>
-          <div className={styles.contentContainer}>
-            <h1 className={styles.title}>{title}</h1>
-            <div className={styles.info}>{info}</div>
-            {children}
-          </div>
-        </main>
-        <Footer />
-      </div>
+      <SidebarNavigation className={styles.navigation} />
+      <main className={styles.main}>
+        <div className={styles.contentContainer}>
+          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.info}>{info}</div>
+          {children}
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
