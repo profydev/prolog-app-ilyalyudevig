@@ -3,14 +3,15 @@ import mockProjects from "../fixtures/projects.json";
 describe("Project Alert", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/dashboard");
+
     cy.intercept("GET", "https://prolog-api.profy.dev/project", {
-      statusCode: 500,
+      forceNetworkError: true,
     }).as("failRequest");
 
+    cy.reload();
+
     cy.wait("@failRequest");
-    cy.wait("@failRequest");
-    cy.wait("@failRequest");
-    cy.wait("@failRequest");
+    cy.wait(5000);
   });
 
   it("renders alert component when request fails", () => {
