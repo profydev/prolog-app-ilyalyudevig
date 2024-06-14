@@ -1,0 +1,51 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid color.$error-300;
+  border-radius: 8px;
+  color: color.$error-700;
+  background-color: color.$error-25;
+  padding: space.$s4;
+  justify-content: space-between;
+  gap: space.$s3;
+  align-items: center;
+}
+
+.content,
+.btn {
+  font-size: 14px;
+  font-weight: 500;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: space.$s3;
+}
+
+.text {
+  margin: 0;
+}
+
+.btn {
+  display: flex;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: color.$error-700;
+  cursor: pointer;
+  outline: inherit;
+  white-space: nowrap;
+}
+
+.arrow {
+  margin-left: space.$s2;
+  fill: color.$error-700;
+  font-size: space.$s5;
+}

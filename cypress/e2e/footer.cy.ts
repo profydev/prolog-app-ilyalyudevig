@@ -1,3 +1,5 @@
+import { version } from "../../package.json";
+
 describe("Footer", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/dashboard");
@@ -9,5 +11,11 @@ describe("Footer", () => {
     cy.get("footer")
       .find("img")
       .should("have.attr", "src", "/icons/logo-small.svg");
+  });
+
+  it("renders correct app version", () => {
+    cy.get("footer")
+      .contains("Version:")
+      .should("have.text", `Version: ${version}`);
   });
 });
