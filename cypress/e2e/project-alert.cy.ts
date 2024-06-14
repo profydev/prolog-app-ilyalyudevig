@@ -8,7 +8,9 @@ describe("Project Alert", () => {
     }).as("failRequest");
 
     cy.wait("@failRequest");
-    cy.wait(5000);
+    cy.wait("@failRequest");
+    cy.wait("@failRequest");
+    cy.wait("@failRequest");
   });
 
   it("renders alert component when request fails", () => {
