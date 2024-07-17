@@ -1,6 +1,6 @@
-import styles from "./project-alert.module.scss";
+import styles from "./alert.module.scss";
 
-export function ProjectAlert() {
+export function Alert() {
   return (
     <div className={styles.alert}>
       <div className={styles.content}>

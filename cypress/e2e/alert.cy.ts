@@ -1,6 +1,6 @@
 import mockProjects from "../fixtures/projects.json";
 
-describe("Project Alert", () => {
+describe("Alert", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/dashboard");
 

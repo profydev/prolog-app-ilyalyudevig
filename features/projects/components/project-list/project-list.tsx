@@ -1,5 +1,5 @@
 import { ProjectCard } from "../project-card";
-import { ProjectAlert } from "../project-alert/project-alert";
+import { Alert } from "@features/ui";
 import { Loader } from "@features/ui";
 import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
@@ -13,7 +13,7 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <ProjectAlert />;
+    return <Alert />;
   }
 
   return (
