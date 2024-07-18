@@ -2,7 +2,7 @@
 @use "@styles/font";
 @use "@styles/space";
 
-.container {
+.alert {
   display: flex;
   flex-direction: row;
   border: 1px solid color.$error-300;

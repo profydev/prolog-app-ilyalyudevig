@@ -7,7 +7,7 @@ type AlertProps = {
 
 export function Alert({ children, className }: AlertProps) {
   return (
-    <div role="alert" className={classNames(styles.container, className)}>
+    <div role="alert" className={classNames(styles.alert, className)}>
       {children}
     </div>
   );
