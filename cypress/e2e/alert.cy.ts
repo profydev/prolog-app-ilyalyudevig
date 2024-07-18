@@ -11,6 +11,7 @@ describe("Alert", () => {
 
     cy.visit("http://localhost:3000/dashboard");
   });
+
   it("renders alert component when request fails", () => {
     cy.get("main")
       .find("p", { timeout: 15000 })
