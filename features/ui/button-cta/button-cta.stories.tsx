@@ -21,8 +21,9 @@ const Template: StoryFn<typeof ButtonCTA> = ({
   size,
   hierarchy,
   icon,
+  disabled,
 }) => (
-  <ButtonCTA size={size} hierarchy={hierarchy} icon={icon}>
+  <ButtonCTA size={size} hierarchy={hierarchy} icon={icon} disabled={disabled}>
     {label}
   </ButtonCTA>
 );
@@ -34,4 +35,5 @@ Default.args = {
   size: ButtonCTASize.md,
   hierarchy: ButtonCTAHierarchy.primary,
   icon: ButtonCTAIcon.none,
+  disabled: false,
 };

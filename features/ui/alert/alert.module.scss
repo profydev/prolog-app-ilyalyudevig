@@ -15,21 +15,10 @@
   align-items: center;
 }
 
-.content,
-.btn {
-  font-size: 14px;
-  font-weight: 500;
-  align-items: center;
-}
-
-.content {
-  display: flex;
-  flex-direction: row;
-  gap: space.$s3;
-}
-
 .text {
+  font: font.$text-sm-medium;
   margin: 0;
+  flex: 1;
 }
 
 .btn {
@@ -38,9 +27,10 @@
   background: none;
   padding: 0;
   margin: 0;
+  font: font.$text-sm-medium;
+  align-items: center;
   color: color.$error-700;
   cursor: pointer;
-  outline: inherit;
   white-space: nowrap;
 }
 
