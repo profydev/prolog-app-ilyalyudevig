@@ -3,7 +3,13 @@ import { ProjectLanguage } from "@api/projects.types";
 import { useGetProjects } from "@features/projects";
 import { useGetIssues } from "../../api/use-get-issues";
 import { IssueRow } from "./issue-row";
-import { Loader, Alert } from "@features/ui";
+import {
+  Loader,
+  Alert,
+  AlertButton,
+  AlertImage,
+  AlertMessage,
+} from "@features/ui";
 import styles from "./issue-list.module.scss";
 
 export function IssueList() {
@@ -24,12 +30,28 @@ export function IssueList() {
 
   if (projects.isError) {
     console.error(projects.error);
-    return <Alert />;
+    return (
+      <Alert>
+        <AlertImage src="/icons/alert-circle.svg" />
+        <AlertMessage>
+          There was a problem while loading the projects data
+        </AlertMessage>
+        <AlertButton onClick={projects.refetch}>Try again</AlertButton>
+      </Alert>
+    );
   }
 
   if (issuesPage.isError) {
     console.error(issuesPage.error);
-    return <Alert />;
+    return (
+      <Alert>
+        <AlertImage src="/icons/alert-circle.svg" />
+        <AlertMessage>
+          There was a problem while loading the issues data
+        </AlertMessage>
+        <AlertButton onClick={issuesPage.refetch}>Try again</AlertButton>
+      </Alert>
+    );
   }
 
   const projectIdToLanguage = (projects.data || []).reduce(
