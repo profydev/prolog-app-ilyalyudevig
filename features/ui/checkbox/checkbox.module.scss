@@ -1,0 +1,59 @@
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: space.$s3;
+  color: color.$gray-700;
+  font-weight: 500;
+
+  &.disabled {
+    color: color.$gray-300;
+  }
+}
+
+.box {
+  display: flex;
+  background-color: color.$primary-50;
+  border: 1px solid color.$primary-600;
+  border-radius: 4px;
+  padding: 2px;
+
+  &.small {
+    height: space.$s4;
+    width: space.$s4;
+    font: font.$text-sm-medium;
+  }
+
+  &.large {
+    height: space.$s5;
+    width: space.$s5;
+    font: font.$text-md-medium;
+  }
+
+  &.unchecked {
+    border-color: color.$gray-300;
+    background-color: #fff;
+  }
+
+  &.disabled {
+    border-color: color.$gray-300;
+    background-color: color.$gray-100;
+  }
+}
+
+.box:hover {
+  background-color: color.$primary-50;
+  border-color: color.$primary-600;
+
+  &.disabled {
+    border-color: color.$gray-300;
+  }
+}
+
+.box:focus {
+  outline: 4px solid color.$primary-50;
+}
