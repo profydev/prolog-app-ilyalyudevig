@@ -66,6 +66,7 @@ jobs:
           node-version: "20"
           cache: "npm"
       - run: npm ci
+      - run: ls -la .next/
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
