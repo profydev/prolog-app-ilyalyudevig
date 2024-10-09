@@ -53,7 +53,7 @@ jobs:
         with:
           name: nextjs-build
           path: .next/
-      - run: ls -la
+      - run: ls -la .next/
 
   e2e:
     runs-on: ubuntu-latest
