@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: nextjs-build
-          path: .next/
+          path: ./
 
   e2e:
     runs-on: ubuntu-latest
