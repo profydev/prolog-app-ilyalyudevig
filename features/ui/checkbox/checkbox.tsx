@@ -54,9 +54,6 @@ export function Checkbox({
       case "checked":
         newState = "partially-checked";
         break;
-      // case "partially-checked":
-      //   newState = "unchecked";
-      //   break;
       default:
         newState = "unchecked";
     }
