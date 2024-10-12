@@ -3,7 +3,7 @@ import { useState } from "react";
 import classNames from "classnames";
 
 type SelectProps = {
-  label: string;
+  label?: string;
   options: string[];
   withIcon?: boolean;
   hint?: string;
