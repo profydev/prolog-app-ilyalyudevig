@@ -19,9 +19,6 @@ const Template: StoryFn<typeof Select> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
-export const WithIcon = Template.bind({});
-
 const mockTeamMembers = [
   "Emily Chen",
   "Liam Reed",
@@ -35,10 +32,14 @@ const mockTeamMembers = [
   "Julian Sanchez",
 ];
 
+export const Default = Template.bind({});
+
 Default.args = {
   options: mockTeamMembers,
   withIcon: false,
 };
+
+export const WithIcon = Template.bind({});
 
 WithIcon.args = {
   options: mockTeamMembers,

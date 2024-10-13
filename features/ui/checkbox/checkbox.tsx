@@ -25,7 +25,7 @@ export function Checkbox({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             className={styles.icon}
-            src={isDisabled ? "/icons/check-gray.svg" : "/icons/check.svg"}
+            src={isDisabled ? "/icons/check-gray.svg" : "/icons/checkmark.svg"}
             alt="check"
           />
         );

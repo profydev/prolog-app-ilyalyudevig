@@ -1,0 +1,71 @@
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
+.container {
+  border: 1px solid color.$gray-300;
+  border-radius: 8px;
+  padding: space.$s3 space.$s4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: space.$s2;
+
+  &.disabled {
+    pointer-events: none;
+    color: color.$gray-300;
+    background-color: color.$gray-50;
+  }
+}
+
+.container:has(.input:focus) {
+  border: 1px solid color.$primary-300;
+  outline: 4px solid color.$primary-100;
+
+  &.error {
+    border: 1px solid color.$error-300;
+    outline: 4px solid color.$error-100;
+  }
+}
+
+.input {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  font: font.$text-md-regular;
+  font-style: normal;
+  line-height: 1.5rem;
+  padding: 0;
+  margin: 0;
+  color: color.$gray-900;
+}
+
+.label {
+  color: color.$gray-700;
+  font: font.$text-xs-medium;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: 1.25rem;
+}
+
+.error {
+  border: 1px solid color.$error-300;
+}
+
+.hint {
+  color: color.$gray-500;
+}
+
+.errorMessage {
+  color: color.$error-500;
+}
+
+.hint,
+.errorMessage {
+  margin-top: 6px;
+  font: font.$text-xs-medium;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
