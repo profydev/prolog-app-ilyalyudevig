@@ -32,8 +32,8 @@ export const Default = Template.bind({});
 
 Default.args = {
   label: "Button CTA",
-  size: ButtonCTASize.md,
-  hierarchy: ButtonCTAHierarchy.primary,
-  icon: ButtonCTAIcon.none,
+  size: ButtonCTASize.Medium,
+  hierarchy: ButtonCTAHierarchy.Primary,
+  icon: ButtonCTAIcon.None,
   disabled: false,
 };

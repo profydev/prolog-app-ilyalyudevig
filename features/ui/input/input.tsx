@@ -9,6 +9,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   errorMessage?: string;
   placeholder?: string;
   className?: string;
+  iconSrc?: string;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   onChange?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
@@ -25,6 +26,7 @@ export function Input({
   placeholder,
   className,
   value,
+  iconSrc,
 }: InputProps) {
   return (
     <>
@@ -41,7 +43,7 @@ export function Input({
         <label id="text" />
         {withIcon && (
           /* eslint-disable-next-line @next/next/no-img-element */
-          <img className={styles.icon} src="/icons/mail.svg" alt="mail" />
+          <img className={styles.icon} src={iconSrc} alt="icon" />
         )}
         <input
           className={styles.input}
@@ -53,7 +55,7 @@ export function Input({
         {isError && (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            className={styles.icon}
+            className={styles.errorIcon}
             src="/icons/alert-circle.svg"
             alt="alert"
           />

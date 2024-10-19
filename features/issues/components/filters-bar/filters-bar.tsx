@@ -1,15 +1,12 @@
 import { ButtonCTA, Select, Input, ButtonCTASize } from "@features/ui";
 import styles from "./filters-bar.module.scss";
-import { ButtonCTAIcon } from "@features/ui";
 
 export function FiltersBar() {
   return (
     <div className={styles.container}>
-      <ButtonCTA
-        className={styles.button}
-        icon={ButtonCTAIcon.leading}
-        size={ButtonCTASize.md}
-      >
+      <ButtonCTA className={styles.button} size={ButtonCTASize.Medium}>
+        {/*eslint-disable-next-line @next/next/no-img-element */}
+        <img className={styles.icon} src="/icons/white-check.svg" alt="check" />
         Resolve selected issues
       </ButtonCTA>
       <Select
@@ -26,6 +23,8 @@ export function FiltersBar() {
         className={styles.search}
         placeholder="Project Name"
         withIcon={true}
+        iconSrc="/icons/search.svg"
+        alt="search"
       />
     </div>
   );

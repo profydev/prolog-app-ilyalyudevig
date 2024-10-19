@@ -11,7 +11,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: space.$s2;
 
   &.disabled {
     pointer-events: none;
@@ -73,5 +72,9 @@
 }
 
 .icon {
+  margin-right: space.$s2;
+}
+
+.errorIcon {
   margin-left: auto;
 }
