@@ -20,6 +20,10 @@
 
 .headerRow {
   border-bottom: 1px solid color.$gray-200;
+
+  & label {
+    color: color.$gray-500;
+  }
 }
 
 .headerCell {

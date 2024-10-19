@@ -3,7 +3,7 @@
 @use "@styles/font";
 
 .dropdown button {
-  height: 44px;
+  height: 100%;
   display: flex;
   align-items: center;
   padding: 10px 14px;
@@ -38,8 +38,8 @@
 .dropdown {
   position: relative;
   display: flex;
-  width: 320px;
   flex-direction: column;
+  height: 44px;
 
   &.error button {
     border: 1px solid color.$error-300;

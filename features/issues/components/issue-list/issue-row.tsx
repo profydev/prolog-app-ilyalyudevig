@@ -4,6 +4,7 @@ import { ProjectLanguage } from "@api/projects.types";
 import { IssueLevel } from "@api/issues.types";
 import type { Issue } from "@api/issues.types";
 import styles from "./issue-row.module.scss";
+import { Checkbox } from "@features/ui";
 
 type IssueRowProps = {
   projectLanguage: ProjectLanguage;
@@ -23,6 +24,13 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
   return (
     <tr className={styles.row}>
       <td className={styles.issueCell}>
+        <Checkbox
+          size="small"
+          state="unchecked"
+          onChange={(e) => {
+            console.log(e);
+          }}
+        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={styles.languageIcon}

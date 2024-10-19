@@ -31,12 +31,14 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: ButtonCTASize;
   hierarchy?: ButtonCTAHierarchy;
   icon?: ButtonCTAIcon;
+  className?: string;
 };
 
 export function ButtonCTA({
   size = ButtonCTASize.md,
   hierarchy = ButtonCTAHierarchy.primary,
   icon = ButtonCTAIcon.none,
+  className,
   ...props
 }: ButtonProps) {
   const circleIcon = (
@@ -52,7 +54,7 @@ export function ButtonCTA({
         styles[size],
         styles[hierarchy],
         styles[icon],
-        props.className,
+        className,
       )}
       type="button"
     >

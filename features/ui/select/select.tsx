@@ -10,6 +10,8 @@ type SelectProps = {
   errorMessage?: string;
   isDisabled?: boolean;
   isError?: boolean;
+  placeholder?: string;
+  className?: string;
 };
 
 export function Select({
@@ -20,8 +22,13 @@ export function Select({
   errorMessage,
   isDisabled,
   isError,
+  placeholder,
+  className,
+  ...props
 }: SelectProps) {
-  const [selectedValue, setSelectedValue] = useState("Select team member");
+  const [selectedValue, setSelectedValue] = useState(
+    placeholder || "Select team member",
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [isEmptyState, setIsEmptyState] = useState(true);
 
@@ -37,19 +44,23 @@ export function Select({
   return (
     <div
       className={classNames(
+        className,
         styles.dropdown,
         isDisabled ? styles.disabled : "",
         isError ? styles.error : "",
       )}
       data-testid="dropdown"
     >
-      <label htmlFor="dropdown" className={styles.label}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor="dropdown" className={styles.label}>
+          {label}
+        </label>
+      )}
       <button
         onClick={toggleDropdown}
         disabled={isDisabled}
         className={isEmptyState ? styles.empty : ""}
+        {...props}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {withIcon && <img src="/icons/user.svg" alt="user" />}

@@ -7,7 +7,7 @@ type CheckboxProps = {
   size: "small" | "large";
   state: CheckboxState;
   isDisabled?: boolean;
-  label: string;
+  label?: string;
   onChange: (state: CheckboxState) => void;
 };
 

@@ -3,6 +3,8 @@
 @use "@styles/font";
 
 .container {
+  box-sizing: border-box;
+  height: 44px;
   border: 1px solid color.$gray-300;
   border-radius: 8px;
   padding: space.$s3 space.$s4;
@@ -29,10 +31,10 @@
 }
 
 .input {
+  width: 100%;
   border: none;
   outline: none;
   background: none;
-  width: 100%;
   font: font.$text-md-regular;
   font-style: normal;
   line-height: 1.5rem;
@@ -68,4 +70,8 @@
   font: font.$text-xs-medium;
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.icon {
+  margin-left: auto;
 }

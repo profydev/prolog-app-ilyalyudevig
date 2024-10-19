@@ -1,1 +1,6 @@
-export { ButtonCTA } from "./button-cta";
+export {
+  ButtonCTA,
+  ButtonCTASize,
+  ButtonCTAHierarchy,
+  ButtonCTAIcon,
+} from "./button-cta";

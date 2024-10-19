@@ -7,6 +7,8 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   isDisabled?: boolean;
   hintMessage?: string;
   errorMessage?: string;
+  placeholder?: string;
+  className?: string;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   onChange?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
@@ -20,7 +22,9 @@ export function Input({
   errorMessage,
   onSubmit,
   onChange,
-  ...props
+  placeholder,
+  className,
+  value,
 }: InputProps) {
   return (
     <>
@@ -28,22 +32,23 @@ export function Input({
       <form
         onSubmit={onSubmit}
         className={classNames(
+          className,
           styles.container,
           isError && styles.error,
           isDisabled && styles.disabled,
         )}
       >
-        <label id="email" />
+        <label id="text" />
         {withIcon && (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img className={styles.icon} src="/icons/mail.svg" alt="mail" />
         )}
         <input
           className={styles.input}
-          type="email"
-          placeholder="user@youremail.com"
+          type="text"
+          placeholder={placeholder}
           onChange={onChange}
-          {...props}
+          value={value}
         />
         {isError && (
           /* eslint-disable-next-line @next/next/no-img-element */
