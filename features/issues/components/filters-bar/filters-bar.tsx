@@ -1,7 +1,23 @@
 import { ButtonCTA, Select, Input, ButtonCTASize } from "@features/ui";
 import styles from "./filters-bar.module.scss";
+import { useEffect, useState } from "react";
+import { useFilters } from "../../hooks/use-filters";
 
 export function FiltersBar() {
+  const [statusFilter, setStatusFilter] = useState("");
+  const [levelFilter, setLevelFilter] = useState("");
+  const [projectFilter, setProjectFilter] = useState("");
+
+  const { handleFilters } = useFilters();
+
+  useEffect(() => {
+    handleFilters({
+      status: statusFilter.toLowerCase(),
+      level: levelFilter.toLowerCase(),
+      project: projectFilter.toLowerCase(),
+    });
+  }, [statusFilter, levelFilter, projectFilter]);
+
   return (
     <div className={styles.container}>
       <ButtonCTA className={styles.button} size={ButtonCTASize.Medium}>
@@ -13,11 +29,15 @@ export function FiltersBar() {
         className={styles.filter}
         options={["Resolved", "Unresolved", "All"]}
         placeholder="Status"
+        value={statusFilter}
+        onChange={(value) => setStatusFilter(value)}
       />
       <Select
         className={styles.filter}
-        options={["Open", "Closed", "All"]}
+        options={["Info", "Warning", "Error", "All"]}
         placeholder="Level"
+        value={levelFilter}
+        onChange={(value) => setLevelFilter(value)}
       />
       <Input
         className={styles.search}
@@ -25,6 +45,8 @@ export function FiltersBar() {
         withIcon={true}
         iconSrc="/icons/search.svg"
         alt="search"
+        value={projectFilter}
+        onChange={(e) => setProjectFilter(e.target.value)}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import capitalize from "lodash/capitalize";
 import { Badge, BadgeColor, BadgeSize } from "@features/ui";
 import { ProjectLanguage } from "@api/projects.types";
@@ -11,6 +12,8 @@ type IssueRowProps = {
   issue: Issue;
 };
 
+type CheckboxState = "unchecked" | "checked" | "partially-checked";
+
 const levelColors = {
   [IssueLevel.info]: BadgeColor.success,
   [IssueLevel.warning]: BadgeColor.warning,
@@ -21,16 +24,29 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
   const { name, message, stack, level, numEvents, numUsers } = issue;
   const firstLineOfStackTrace = stack.split("\n")[1];
 
+  const [checkboxState, setCheckboxState] =
+    useState<CheckboxState>("unchecked");
+
+  const handleClick = (state: CheckboxState) => {
+    let newState: CheckboxState;
+    switch (state) {
+      case "unchecked":
+        newState = "checked";
+        break;
+      case "checked":
+        newState = "partially-checked";
+        break;
+      default:
+        newState = "unchecked";
+    }
+
+    setCheckboxState(newState);
+  };
+
   return (
     <tr className={styles.row}>
       <td className={styles.issueCell}>
-        <Checkbox
-          size="small"
-          state="unchecked"
-          onChange={(e) => {
-            console.log(e);
-          }}
-        />
+        <Checkbox size="small" state={checkboxState} onChange={handleClick} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={styles.languageIcon}

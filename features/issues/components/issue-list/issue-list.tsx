@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { ProjectLanguage } from "@api/projects.types";
 import { useGetProjects } from "@features/projects";
 import { useGetIssues } from "../../api/use-get-issues";
+import { useFilters } from "../../hooks/use-filters";
 import { IssueRow } from "./issue-row";
 import {
   Loader,
@@ -12,19 +14,59 @@ import {
   Checkbox,
 } from "@features/ui";
 import { FiltersBar } from "../filters-bar";
+import {
+  Issue,
+  IssueFilters,
+  IssueLevel,
+  IssueStatus,
+} from "@api/issues.types";
 import styles from "./issue-list.module.scss";
 
 export function IssueList() {
   const router = useRouter();
   const page = Number(router.query.page || 1);
+  const { filters } = useFilters();
   const navigateToPage = (newPage: number) =>
     router.push({
       pathname: router.pathname,
-      query: { page: newPage },
+      query: { page: newPage, ...filters },
     });
 
-  const issuesPage = useGetIssues(page);
+  const newFilters = {
+    ...filters,
+    status:
+      filters.status === "unresolved"
+        ? "open"
+        : filters.status === "resolved"
+          ? "closed"
+          : filters.status === "all"
+            ? undefined
+            : (filters.status as IssueStatus),
+
+    level: filters.level === "all" ? undefined : (filters.level as IssueLevel),
+  };
+
+  const issuesPage = useGetIssues(page, newFilters as IssueFilters);
   const projects = useGetProjects();
+
+  type CheckboxState = "checked" | "partially-checked" | "unchecked";
+  const [checkBoxState, setCheckBoxState] =
+    useState<CheckboxState>("unchecked");
+  const handleClick = (state: CheckboxState) => {
+    let newState: CheckboxState;
+    switch (state) {
+      case "unchecked":
+        newState = "checked";
+        break;
+      case "checked":
+        newState = "partially-checked";
+        break;
+      default:
+        newState = "unchecked";
+    }
+
+    setCheckBoxState(newState);
+  };
 
   if (projects.isLoading || issuesPage.isLoading) {
     return <Loader />;
@@ -63,6 +105,7 @@ export function IssueList() {
     }),
     {} as Record<string, ProjectLanguage>,
   );
+
   const { items, meta } = issuesPage.data || {};
 
   return (
@@ -75,11 +118,9 @@ export function IssueList() {
               <th className={styles.headerCell}>
                 <Checkbox
                   size="small"
-                  state="unchecked"
+                  state={checkBoxState}
                   label="Issue"
-                  onChange={(e) => {
-                    console.log(e);
-                  }}
+                  onChange={handleClick}
                 />
               </th>
               <th className={styles.headerCell}>Level</th>
@@ -88,7 +129,7 @@ export function IssueList() {
             </tr>
           </thead>
           <tbody>
-            {(items || []).map((issue) => (
+            {(items || []).map((issue: Issue) => (
               <IssueRow
                 key={issue.id}
                 issue={issue}

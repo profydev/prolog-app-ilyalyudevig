@@ -1,5 +1,5 @@
 import styles from "./select.module.scss";
-import { useState } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 
 type SelectProps = {
@@ -12,6 +12,8 @@ type SelectProps = {
   isError?: boolean;
   placeholder?: string;
   className?: string;
+  value?: string;
+  onChange: (value: string) => void;
 };
 
 export function Select({
@@ -24,10 +26,12 @@ export function Select({
   isError,
   placeholder,
   className,
+  value,
+  onChange,
   ...props
 }: SelectProps) {
   const [selectedValue, setSelectedValue] = useState(
-    placeholder || "Select team member",
+    placeholder || value || "Select team member",
   );
   const [isOpen, setIsOpen] = useState(false);
   const [isEmptyState, setIsEmptyState] = useState(true);
@@ -37,6 +41,7 @@ export function Select({
   const handleSelect = (value: string) => {
     if (isDisabled) return;
     setSelectedValue(value);
+    onChange(value);
     setIsEmptyState(false);
     setIsOpen(false);
   };

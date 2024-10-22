@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import styles from "./input.module.scss";
+import { ChangeEvent } from "react";
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   withIcon?: boolean;
@@ -10,8 +11,8 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
   className?: string;
   iconSrc?: string;
-  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
-  onChange?: (e: React.FormEvent<HTMLFormElement>) => void;
+  value?: string;
+  onChange?: (value: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function Input({
@@ -21,51 +22,47 @@ export function Input({
   isDisabled,
   hintMessage,
   errorMessage,
-  onSubmit,
-  onChange,
   placeholder,
   className,
-  value,
   iconSrc,
+  value,
+  onChange,
 }: InputProps) {
   return (
-    <>
+    <div
+      className={classNames(
+        className,
+        styles.container,
+        isError && styles.error,
+        isDisabled && styles.disabled,
+      )}
+    >
       {label && <p className={styles.label}>{label}</p>}
-      <form
-        onSubmit={onSubmit}
-        className={classNames(
-          className,
-          styles.container,
-          isError && styles.error,
-          isDisabled && styles.disabled,
-        )}
-      >
-        <label id="text" />
-        {withIcon && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img className={styles.icon} src={iconSrc} alt="icon" />
-        )}
-        <input
-          className={styles.input}
-          type="text"
-          placeholder={placeholder}
-          onChange={onChange}
-          value={value}
+      <label id="text" />
+      {withIcon && (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img className={styles.icon} src={iconSrc} alt="icon" />
+      )}
+      <input
+        className={styles.input}
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+      {isError && (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          className={styles.errorIcon}
+          src="/icons/alert-circle.svg"
+          alt="alert"
         />
-        {isError && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            className={styles.errorIcon}
-            src="/icons/alert-circle.svg"
-            alt="alert"
-          />
-        )}
-      </form>
+      )}
       {isError ? (
         <p className={styles.errorMessage}>{errorMessage}</p>
       ) : (
         <p className={styles.hint}>{hintMessage}</p>
       )}
-    </>
+    </div>
   );
 }

@@ -1,3 +1,8 @@
+export enum IssueStatus {
+  open = "open",
+  closed = "closed",
+}
+
 export enum IssueLevel {
   info = "info",
   warning = "warning",
@@ -13,4 +18,10 @@ export type Issue = {
   level: IssueLevel;
   numEvents: number;
   numUsers: number;
+};
+
+export type IssueFilters = {
+  status: IssueStatus;
+  level: IssueLevel;
+  project: string;
 };
