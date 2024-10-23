@@ -12,7 +12,7 @@ type SelectProps = {
   isError?: boolean;
   placeholder?: string;
   className?: string;
-  value?: string;
+  value?: string | string[] | undefined;
   onChange: (value: string) => void;
 };
 
@@ -30,9 +30,7 @@ export function Select({
   onChange,
   ...props
 }: SelectProps) {
-  const [selectedValue, setSelectedValue] = useState(
-    placeholder || value || "Select team member",
-  );
+  const [selectedValue, setSelectedValue] = useState(value || placeholder);
   const [isOpen, setIsOpen] = useState(false);
   const [isEmptyState, setIsEmptyState] = useState(true);
 
@@ -69,7 +67,7 @@ export function Select({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {withIcon && <img src="/icons/user.svg" alt="user" />}
-        {selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1)}
+        {selectedValue}
         {isOpen ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

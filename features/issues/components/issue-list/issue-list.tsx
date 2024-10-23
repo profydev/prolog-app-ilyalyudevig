@@ -2,8 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { ProjectLanguage } from "@api/projects.types";
 import { useGetProjects } from "@features/projects";
-import { useGetIssues } from "../../api/use-get-issues";
-import { useFilters } from "../../hooks/use-filters";
+import { useGetIssues, useFilters, convertFilters } from "@features/issues";
 import { IssueRow } from "./issue-row";
 import {
   Loader,
@@ -14,39 +13,26 @@ import {
   Checkbox,
 } from "@features/ui";
 import { FiltersBar } from "../filters-bar";
-import {
-  Issue,
-  IssueFilters,
-  IssueLevel,
-  IssueStatus,
-} from "@api/issues.types";
+import { Issue } from "@api/issues.types";
 import styles from "./issue-list.module.scss";
 
 export function IssueList() {
   const router = useRouter();
   const page = Number(router.query.page || 1);
   const { filters } = useFilters();
+
   const navigateToPage = (newPage: number) =>
-    router.push({
-      pathname: router.pathname,
-      query: { page: newPage, ...filters },
-    });
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { page: newPage, ...filters },
+      },
+      undefined,
+      { shallow: true },
+    );
 
-  const newFilters = {
-    ...filters,
-    status:
-      filters.status === "unresolved"
-        ? "open"
-        : filters.status === "resolved"
-          ? "closed"
-          : filters.status === "all"
-            ? undefined
-            : (filters.status as IssueStatus),
-
-    level: filters.level === "all" ? undefined : (filters.level as IssueLevel),
-  };
-
-  const issuesPage = useGetIssues(page, newFilters as IssueFilters);
+  const newFilters = convertFilters(filters);
+  const issuesPage = useGetIssues(page, newFilters);
   const projects = useGetProjects();
 
   type CheckboxState = "checked" | "partially-checked" | "unchecked";

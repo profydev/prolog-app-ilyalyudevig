@@ -1,20 +1,21 @@
 import { ButtonCTA, Select, Input, ButtonCTASize } from "@features/ui";
 import styles from "./filters-bar.module.scss";
 import { useEffect, useState } from "react";
-import { useFilters } from "../../hooks/use-filters";
+import { useFilters } from "@features/issues";
+import { Filters } from "@features/issues";
 
 export function FiltersBar() {
-  const [statusFilter, setStatusFilter] = useState("");
-  const [levelFilter, setLevelFilter] = useState("");
-  const [projectFilter, setProjectFilter] = useState("");
+  const { filters, handleFilters } = useFilters();
 
-  const { handleFilters } = useFilters();
+  const [statusFilter, setStatusFilter] = useState(filters.status);
+  const [levelFilter, setLevelFilter] = useState(filters.level);
+  const [projectFilter, setProjectFilter] = useState(filters.project);
 
   useEffect(() => {
     handleFilters({
-      status: statusFilter.toLowerCase(),
-      level: levelFilter.toLowerCase(),
-      project: projectFilter.toLowerCase(),
+      status: statusFilter,
+      level: levelFilter,
+      project: projectFilter,
     });
   }, [statusFilter, levelFilter, projectFilter]);
 
@@ -28,16 +29,20 @@ export function FiltersBar() {
       <Select
         className={styles.filter}
         options={["Resolved", "Unresolved", "All"]}
-        placeholder="Status"
+        placeholder={"Status"}
         value={statusFilter}
-        onChange={(value) => setStatusFilter(value)}
+        onChange={(value) =>
+          setStatusFilter(value.toLowerCase() as Filters["status"])
+        }
       />
       <Select
         className={styles.filter}
         options={["Info", "Warning", "Error", "All"]}
         placeholder="Level"
         value={levelFilter}
-        onChange={(value) => setLevelFilter(value)}
+        onChange={(value) =>
+          setLevelFilter(value.toLowerCase() as Filters["level"])
+        }
       />
       <Input
         className={styles.search}
