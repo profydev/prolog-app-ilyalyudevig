@@ -11,6 +11,7 @@ import {
   AlertImage,
   AlertMessage,
   Checkbox,
+  CheckboxState,
 } from "@features/ui";
 import { FiltersBar } from "../filters-bar";
 import { Issue } from "@api/issues.types";
@@ -32,26 +33,18 @@ export function IssueList() {
     );
 
   const newFilters = convertFilters(filters);
+
   const issuesPage = useGetIssues(page, newFilters);
   const projects = useGetProjects();
 
-  type CheckboxState = "checked" | "partially-checked" | "unchecked";
-  const [checkBoxState, setCheckBoxState] =
-    useState<CheckboxState>("unchecked");
-  const handleClick = (state: CheckboxState) => {
-    let newState: CheckboxState;
-    switch (state) {
-      case "unchecked":
-        newState = "checked";
-        break;
-      case "checked":
-        newState = "partially-checked";
-        break;
-      default:
-        newState = "unchecked";
-    }
+  const [headerCheckBoxState, setHeaderCheckBoxState] = useState(
+    "unchecked" as CheckboxState,
+  );
 
-    setCheckBoxState(newState);
+  const [allChecked, setAllChecked] = useState(false);
+  const handleHeaderCheckboxChange = (newState: CheckboxState) => {
+    setHeaderCheckBoxState(newState);
+    setAllChecked(newState === "checked");
   };
 
   if (projects.isLoading || issuesPage.isLoading) {
@@ -104,9 +97,9 @@ export function IssueList() {
               <th className={styles.headerCell}>
                 <Checkbox
                   size="small"
-                  state={checkBoxState}
+                  state={headerCheckBoxState}
                   label="Issue"
-                  onChange={handleClick}
+                  onChange={handleHeaderCheckboxChange}
                 />
               </th>
               <th className={styles.headerCell}>Level</th>
@@ -120,6 +113,7 @@ export function IssueList() {
                 key={issue.id}
                 issue={issue}
                 projectLanguage={projectIdToLanguage[issue.projectId]}
+                allChecked={allChecked}
               />
             ))}
           </tbody>

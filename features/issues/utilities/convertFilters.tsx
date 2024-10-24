@@ -10,12 +10,12 @@ export function convertFilters(filters: Filters): IssueFilters {
 
   const convertedFilters = {
     status:
-      status !== "all"
+      status && status !== "all"
         ? status === "unresolved"
           ? IssueStatus.open
           : IssueStatus.closed
         : undefined,
-    level: level !== "all" ? (level as IssueLevel) : undefined,
+    level: level && level !== "all" ? (level as IssueLevel) : undefined,
     project: project,
   };
 
