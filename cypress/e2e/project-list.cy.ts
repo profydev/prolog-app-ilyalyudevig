@@ -1,4 +1,3 @@
-import capitalize from "lodash/capitalize";
 import mockProjects from "../fixtures/projects.json";
 
 describe("Project List", () => {
@@ -41,7 +40,6 @@ describe("Project List", () => {
     });
 
     it("renders the projects", () => {
-      const languageNames = ["React", "Node.js", "Python"];
       const statusNames = ["Critical", "Warning", "Stable"];
 
       // get all project cards
@@ -50,13 +48,21 @@ describe("Project List", () => {
         .each(($el, index) => {
           // check that project data is rendered
           cy.wrap($el).contains(mockProjects[index].name);
-          cy.wrap($el).contains(languageNames[index]);
+          cy.wrap($el).contains(mockProjects[index].language, {
+            matchCase: false,
+          });
           cy.wrap($el).contains(mockProjects[index].numIssues);
           cy.wrap($el).contains(mockProjects[index].numEvents24h);
-          cy.wrap($el).contains(capitalize(statusNames[index]));
+          cy.wrap($el).contains(statusNames[index]);
           cy.wrap($el)
             .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
+            .should("have.attr", "href")
+            .and(
+              "contains",
+              "/dashboard/issues?project=".concat(
+                mockProjects[index].name.match(/^[^\s]+/)?.[0] as string,
+              ),
+            );
         });
     });
   });
