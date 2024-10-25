@@ -36,6 +36,7 @@ export function Input({
         isError && styles.error,
         isDisabled && styles.disabled,
       )}
+      data-testid="input"
     >
       {label && <p className={styles.label}>{label}</p>}
       <label id="text" />
