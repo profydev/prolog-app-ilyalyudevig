@@ -36,6 +36,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   options: mockTeamMembers,
+  placeholder: "Select a team member",
   withIcon: false,
 };
 

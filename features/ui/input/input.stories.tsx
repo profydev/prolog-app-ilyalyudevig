@@ -27,4 +27,5 @@ Default.args = {
   isDisabled: false,
   hintMessage: "",
   errorMessage: "",
+  iconSrc: "/icons/mail.svg",
 };

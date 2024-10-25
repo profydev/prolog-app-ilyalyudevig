@@ -1,0 +1,30 @@
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-bottom: space.$s6;
+  justify-content: flex-end;
+}
+
+.filter {
+  margin-left: space.$s4;
+  margin-right: 0;
+  width: 160px;
+}
+
+.search {
+  width: 280px;
+  margin-left: space.$s4;
+}
+
+.button {
+  margin-right: auto;
+}
+
+.icon {
+  margin-right: space.$s2;
+}

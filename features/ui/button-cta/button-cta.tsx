@@ -3,27 +3,27 @@ import classNames from "classnames";
 import styles from "./button-cta.module.scss";
 
 export enum ButtonCTASize {
-  sm = "sm",
-  md = "md",
-  lg = "lg",
-  xl = "xl",
+  Small = "sm",
+  Medium = "md",
+  Large = "lg",
+  XLarge = "xl",
 }
 
 export enum ButtonCTAHierarchy {
-  primary = "primary",
-  secondary = "secondary",
-  gray = "gray",
-  empty = "empty",
-  emptyGray = "emptyGray",
-  error = "error",
-  emptyError = "emptyError",
+  Primary = "primary",
+  Secondary = "secondary",
+  Gray = "gray",
+  Empty = "empty",
+  EmptyGray = "emptyGray",
+  Error = "error",
+  EmptyError = "emptyError",
 }
 
 export enum ButtonCTAIcon {
-  leading = "leading",
-  trailing = "trailing",
-  only = "only",
-  none = "none",
+  Leading = "leading",
+  Trailing = "trailing",
+  Only = "only",
+  None = "none",
 }
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -31,12 +31,14 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: ButtonCTASize;
   hierarchy?: ButtonCTAHierarchy;
   icon?: ButtonCTAIcon;
+  className?: string;
 };
 
 export function ButtonCTA({
-  size = ButtonCTASize.md,
-  hierarchy = ButtonCTAHierarchy.primary,
-  icon = ButtonCTAIcon.none,
+  size = ButtonCTASize.Medium,
+  hierarchy = ButtonCTAHierarchy.Primary,
+  icon = ButtonCTAIcon.None,
+  className,
   ...props
 }: ButtonProps) {
   const circleIcon = (
@@ -52,7 +54,7 @@ export function ButtonCTA({
         styles[size],
         styles[hierarchy],
         styles[icon],
-        props.className,
+        className,
       )}
       type="button"
     >
