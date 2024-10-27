@@ -4,6 +4,7 @@ import { ProjectLanguage } from "@api/projects.types";
 import { useGetProjects } from "@features/projects";
 import { useGetIssues, useFilters, convertFilters } from "@features/issues";
 import { IssueRow } from "./issue-row";
+import { IssueCard } from "./issue-card";
 import {
   Loader,
   Alert,
@@ -88,14 +89,24 @@ export function IssueList() {
   const { items, meta } = issuesPage.data || {};
 
   return (
-    <>
+    <div className={styles.list}>
       <FiltersBar />
+      <div className={styles.mobileContainer}>
+        {(items || []).map((issue: Issue) => (
+          <IssueCard
+            key={issue.id}
+            issue={issue}
+            projectLanguage={projectIdToLanguage[issue.projectId]}
+          />
+        ))}
+      </div>
       <div className={styles.container}>
         <table className={styles.table}>
           <thead>
             <tr className={styles.headerRow}>
               <th className={styles.headerCell}>
                 <Checkbox
+                  className={styles.headerCheckbox}
                   size="small"
                   state={headerCheckBoxState}
                   label="Issue"
@@ -141,6 +152,6 @@ export function IssueList() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

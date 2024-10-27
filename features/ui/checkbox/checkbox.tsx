@@ -8,6 +8,7 @@ type CheckboxProps = {
   state: CheckboxState;
   isDisabled?: boolean;
   label?: string;
+  className?: string;
   onChange: (state: CheckboxState) => void;
 };
 
@@ -17,6 +18,7 @@ export function Checkbox({
   label,
   isDisabled,
   onChange,
+  className,
 }: CheckboxProps) {
   const getIcon = (state: CheckboxState) => {
     if (state === "checked") {
@@ -47,7 +49,7 @@ export function Checkbox({
 
   return (
     <div
-      className={classNames(styles.container, styles[state], {
+      className={classNames(className, styles.container, styles[state], {
         [styles.disabled]: isDisabled,
       })}
     >
