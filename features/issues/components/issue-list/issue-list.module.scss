@@ -1,6 +1,26 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
+
+.list {
+  display: flex;
+  flex-flow: column wrap;
+
+  @media (max-width: breakpoint.$desktop) {
+    display: grid;
+
+    .container {
+      display: none;
+    }
+  }
+
+  @media (min-width: breakpoint.$desktop) {
+    .mobileContainer {
+      display: none;
+    }
+  }
+}
 
 .container {
   background: white;

@@ -9,8 +9,8 @@
 .button {
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 8px;
   margin: 0;
@@ -55,9 +55,9 @@
   }
 
   &.md {
-    padding: 0.625rem space.$s4;
+    padding: 0.625rem space.$s5;
     height: space.$s11;
-    font: font.$text-sm-medium;
+    font: font.$text-md-medium;
 
     &.only {
       padding: 0;

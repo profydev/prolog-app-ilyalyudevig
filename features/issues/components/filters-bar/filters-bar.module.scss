@@ -1,6 +1,8 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
+@use "@styles/z-index";
 
 .container {
   display: flex;
@@ -8,6 +10,24 @@
   padding: 0;
   margin-bottom: space.$s6;
   justify-content: flex-end;
+
+  @media (max-width: breakpoint.$desktop) {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .button,
+    .filter,
+    .search {
+      width: 100%;
+      margin: 0;
+      margin-bottom: space.$s4;
+    }
+
+    .button {
+      order: 3;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .filter {
@@ -23,6 +43,7 @@
 
 .button {
   margin-right: auto;
+  min-width: 230px;
 }
 
 .icon {
