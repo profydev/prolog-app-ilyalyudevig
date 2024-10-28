@@ -129,27 +129,27 @@ export function IssueList() {
             ))}
           </tbody>
         </table>
-        <div className={styles.paginationContainer}>
-          <div>
-            <button
-              className={styles.paginationButton}
-              onClick={() => navigateToPage(page - 1)}
-              disabled={page === 1}
-            >
-              Previous
-            </button>
-            <button
-              className={styles.paginationButton}
-              onClick={() => navigateToPage(page + 1)}
-              disabled={page === meta?.totalPages}
-            >
-              Next
-            </button>
-          </div>
-          <div className={styles.pageInfo}>
-            Page <span className={styles.pageNumber}>{meta?.currentPage}</span>{" "}
-            of <span className={styles.pageNumber}>{meta?.totalPages}</span>
-          </div>
+      </div>
+      <div className={styles.paginationContainer}>
+        <div className={styles.paginationButtons}>
+          <button
+            className={styles.paginationButton}
+            onClick={() => navigateToPage(page - 1)}
+            disabled={page === 1}
+          >
+            Previous
+          </button>
+          <button
+            className={styles.paginationButton}
+            onClick={() => navigateToPage(page + 1)}
+            disabled={page === meta?.totalPages}
+          >
+            Next
+          </button>
+        </div>
+        <div className={styles.pageInfo}>
+          Page <span className={styles.pageNumber}>{meta?.currentPage}</span> of{" "}
+          <span className={styles.pageNumber}>{meta?.totalPages}</span>
         </div>
       </div>
     </div>
