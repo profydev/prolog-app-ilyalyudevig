@@ -13,6 +13,26 @@
     .container {
       display: none;
     }
+
+    .paginationContainer {
+      display: flex;
+      flex-direction: column;
+      padding: space.$s3 0;
+    }
+
+    .paginationButtons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .paginationButton {
+      width: 50%;
+    }
+
+    .pageInfo {
+      margin: space.$s4 0;
+    }
   }
 
   @media (min-width: breakpoint.$desktop) {
@@ -58,7 +78,6 @@
   align-items: center;
   justify-content: space-between;
   padding: space.$s4 space.$s6;
-  border-top: 1px solid color.$gray-200;
 }
 
 .paginationButton {
