@@ -17,7 +17,7 @@
     .paginationContainer {
       display: flex;
       flex-direction: column;
-      padding: space.$s3 0;
+      padding: 0 0 space.$s3 0;
     }
 
     .paginationButtons {
@@ -38,6 +38,10 @@
   @media (min-width: breakpoint.$desktop) {
     .mobileContainer {
       display: none;
+    }
+
+    .paginationContainer {
+      padding: space.$s4 0;
     }
   }
 }
