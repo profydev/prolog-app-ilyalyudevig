@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { Routes } from "@config/routes";
 import styles from "./index.module.scss";
 import { ButtonCTA, ButtonCTASize } from "@features/ui";
+import { Modal } from "@features/layout";
 
 const IssuesPage = () => {
+  const [modalIsOpened, setModalIsOpened] = useState(false);
+
+  const toggleContactModal = () => {
+    setModalIsOpened(!modalIsOpened);
+  };
+
   return (
     <div>
       <header className={styles.header}>
@@ -31,17 +39,14 @@ const IssuesPage = () => {
           Open Dashboard
         </ButtonCTA>
       </header>
-      <button
-        className={styles.contactButton}
-        onClick={() =>
-          alert(
-            "Implement this in Challenge 2 - Modal:\n\nhttps://profy.dev/rjs-challenge-modal",
-          )
-        }
-      >
+      <button className={styles.contactButton} onClick={toggleContactModal}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/message.svg" alt="Contact" />
       </button>
+      <Modal
+        modalIsOpened={modalIsOpened}
+        toggleContactModal={toggleContactModal}
+      />
     </div>
   );
 };
