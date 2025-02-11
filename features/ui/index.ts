@@ -6,3 +6,4 @@ export * from "./alert";
 export * from "./checkbox";
 export * from "./select";
 export * from "./input";
+export * from "./modal";

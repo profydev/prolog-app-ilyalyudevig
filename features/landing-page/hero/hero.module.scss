@@ -1,0 +1,45 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.title {
+  font: font.$text-xl-semibold;
+  margin: 96px 0 0;
+}
+
+.subtitle {
+  font: font.$text-md-regular;
+  color: color.$gray-500;
+  width: 500px;
+  text-align: center;
+  margin: 24px 0 0;
+}
+
+.image {
+  width: 768px;
+  margin: 64px 0 96px;
+}
+
+@media screen and (max-width: breakpoint.$desktop) {
+  .title {
+    font: font.$text-md-semibold;
+    margin: 64px 0 0;
+  }
+
+  .subtitle {
+    font: font.$text-md-regular;
+  }
+
+  .image {
+    width: 343px;
+  }
+}
