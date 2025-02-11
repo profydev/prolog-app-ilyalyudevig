@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Routes } from "@config/routes";
 import styles from "./index.module.scss";
 import { ButtonCTA, ButtonCTASize } from "@features/ui";
-import { Modal } from "@features/layout";
+import { Modal } from "@features/ui";
+import { Hero } from "@features/landing-page";
 
 const IssuesPage = () => {
   const [modalIsOpened, setModalIsOpened] = useState(false);
@@ -16,7 +17,7 @@ const IssuesPage = () => {
       <header className={styles.header}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/logo-large.svg" alt="Prolog logo" />
-        <div className={styles.navLinks}>
+        <nav className={styles.navLinks}>
           <a href={Routes.home} className={styles.navLink}>
             Home
           </a>
@@ -29,7 +30,7 @@ const IssuesPage = () => {
           <a href={Routes.pricing} className={styles.navLink}>
             Pricing
           </a>
-        </div>
+        </nav>
         <ButtonCTA
           size={ButtonCTASize.Medium}
           onClick={() => {
@@ -39,6 +40,7 @@ const IssuesPage = () => {
           Open Dashboard
         </ButtonCTA>
       </header>
+      <Hero />
       <button className={styles.contactButton} onClick={toggleContactModal}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/message.svg" alt="Contact" />
